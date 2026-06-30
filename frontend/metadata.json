@@ -1,0 +1,6 @@
+{
+  "name": "Eastern Bright Moon",
+  "description": "东方朗月 Eastern Bright Moon 个人艺术空间，包含关于、专栏（文章）、展评分享与光影展示。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
