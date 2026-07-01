@@ -30,7 +30,7 @@ class ColumnArticle(Base):
     issue_id: Mapped[str] = mapped_column(String(100), ForeignKey("column_issues.id", ondelete="CASCADE"), nullable=False, comment="所属期刊ID外键")
     title: Mapped[str] = mapped_column(String(255), nullable=False, comment="文章主标题")
     subtitle: Mapped[Optional[str]] = mapped_column(String(255), comment="文章副标题")
-    date: Mapped[Optional[str]] = mapped_column(String(100), comment="文章撰写发布日期")
+    date: Mapped[Optional[datetime.date]] = mapped_column(Date, comment="文章撰写发布日期")
     content: Mapped[str] = mapped_column(Text, nullable=False, comment="文章多段落/富文本详细内容")
     sort_order: Mapped[int] = mapped_column(default=0, comment="文章在期刊内的展示排序权重")
     
