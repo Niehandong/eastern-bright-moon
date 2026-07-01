@@ -2,13 +2,15 @@ from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Text, String, Date
 from typing import Optional
 import datetime
+import uuid
 from utils.session import Base
+from utils.mixins import TimestampMixin
 
-class ExhibitionReview(Base):
+class ExhibitionReview(Base, TimestampMixin):
     __tablename__ = "exhibition_reviews"
     __table_args__ = {"comment": "艺术空间/画廊展览看展点评手记表"}
 
-    id: Mapped[str] = mapped_column(String(100), primary_key=True, comment="展览点评唯一标识ID")
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), comment="展览点评唯一标识ID(UUID)")
     title: Mapped[str] = mapped_column(String(255), nullable=False, comment="展评文章主标题")
     subtitle: Mapped[Optional[str]] = mapped_column(String(255), comment="展评文章副标题")
     artist: Mapped[Optional[str]] = mapped_column(String(100), comment="参展艺术家名称/联展主旨")

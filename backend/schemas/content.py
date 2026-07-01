@@ -13,12 +13,15 @@ class BioBase(BaseModel):
 
 class BioRead(BioBase):
     id: int
+    created_at: Optional[datetime.datetime] = None
+    updated_at: Optional[datetime.datetime] = None
+
     class Config:
         from_attributes = True
 
 # Column Article
 class ArticleBase(BaseModel):
-    id: str
+    id: Optional[str] = None
     title: str
     subtitle: Optional[str] = None
     date: Optional[datetime.date] = None
@@ -27,12 +30,15 @@ class ArticleBase(BaseModel):
 
 class ArticleRead(ArticleBase):
     issue_id: str
+    created_at: Optional[datetime.datetime] = None
+    updated_at: Optional[datetime.datetime] = None
+
     class Config:
         from_attributes = True
 
 # Column Issue
 class IssueBase(BaseModel):
-    id: str
+    id: Optional[str] = None
     title: str
     issue_no: str
     issue_title: str
@@ -46,12 +52,15 @@ class IssueBase(BaseModel):
 
 class IssueRead(IssueBase):
     articles: List[ArticleRead] = []
+    created_at: Optional[datetime.datetime] = None
+    updated_at: Optional[datetime.datetime] = None
+
     class Config:
         from_attributes = True
 
 # Exhibition Review
 class ExhibitionBase(BaseModel):
-    id: str
+    id: Optional[str] = None
     title: str
     subtitle: Optional[str] = None
     artist: Optional[str] = None
@@ -62,12 +71,15 @@ class ExhibitionBase(BaseModel):
     poster_url: Optional[str] = None
 
 class ExhibitionRead(ExhibitionBase):
+    created_at: Optional[datetime.datetime] = None
+    updated_at: Optional[datetime.datetime] = None
+
     class Config:
         from_attributes = True
 
 # Photo Item
 class PhotoBase(BaseModel):
-    id: str
+    id: Optional[str] = None
     title: str
     category: str
     location: Optional[str] = None
@@ -76,12 +88,15 @@ class PhotoBase(BaseModel):
     description: Optional[str] = None
 
 class PhotoRead(PhotoBase):
+    created_at: Optional[datetime.datetime] = None
+    updated_at: Optional[datetime.datetime] = None
+
     class Config:
         from_attributes = True
 
 # Footprint Item
 class FootprintBase(BaseModel):
-    id: str
+    id: Optional[str] = None
     city: str
     city_en: Optional[str] = None
     country: str
@@ -94,12 +109,15 @@ class FootprintBase(BaseModel):
     region: str
 
 class FootprintRead(FootprintBase):
+    created_at: Optional[datetime.datetime] = None
+    updated_at: Optional[datetime.datetime] = None
+
     class Config:
         from_attributes = True
 
 # Moon Phase
 class MoonPhaseBase(BaseModel):
-    id: str
+    id: Optional[str] = None
     name: str
     english_name: str
     keywords: str
@@ -109,15 +127,21 @@ class MoonPhaseBase(BaseModel):
     sort_order: int = 0
 
 class MoonPhaseRead(MoonPhaseBase):
+    created_at: Optional[datetime.datetime] = None
+    updated_at: Optional[datetime.datetime] = None
+
     class Config:
         from_attributes = True
 
 # Zen Quote
 class QuoteBase(BaseModel):
-    id: str
+    id: Optional[str] = None
     text: str
     author: str = "匿名"
 
 class QuoteRead(QuoteBase):
+    created_at: Optional[datetime.datetime] = None
+    updated_at: Optional[datetime.datetime] = None
+
     class Config:
         from_attributes = True

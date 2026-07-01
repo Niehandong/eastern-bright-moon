@@ -4,6 +4,7 @@ from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
 from typing import List
 import datetime
+import uuid
 
 
 def _to_date(value):
@@ -113,7 +114,7 @@ async def create_issue(
 
     issue_id = issue_data.get("id")
     if not issue_id:
-        issue_id = f"issue-{int(time.time())}"
+        issue_id = str(uuid.uuid4())
         issue_data["id"] = issue_id
         
     # 3. 智能判断：新增 (Insert) 还是 修改 (Update) 期刊主表
@@ -137,7 +138,7 @@ async def create_issue(
     
     for idx, art in enumerate(articles_data):
         db_art = ColumnArticle(
-            id=art.get("id") or f"article-{db_issue.id}-{idx}-{int(time.time())}",
+            id=art.get("id") or str(uuid.uuid4()),
             issue_id=db_issue.id,
             title=art.get("title", "未命名目录"),
             subtitle=art.get("subtitle", ""),

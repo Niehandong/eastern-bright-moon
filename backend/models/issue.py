@@ -2,13 +2,15 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey, Text, JSON, String, Date
 from typing import List, Optional
 import datetime
+import uuid
 from utils.session import Base
+from utils.mixins import TimestampMixin
 
-class ColumnIssue(Base):
+class ColumnIssue(Base, TimestampMixin):
     __tablename__ = "column_issues"
     __table_args__ = {"comment": "遇见世界独立美学电子期刊杂志表"}
 
-    id: Mapped[str] = mapped_column(String(100), primary_key=True, comment="期刊唯一标识ID(如issue-1)")
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), comment="期刊唯一标识ID(UUID)")
     title: Mapped[str] = mapped_column(String(255), nullable=False, comment="杂志主刊大栏目名称")
     issue_no: Mapped[str] = mapped_column(String(100), nullable=False, comment="期刊编号期数(如第一期)")
     issue_title: Mapped[str] = mapped_column(String(100), nullable=False, comment="期刊专属美学主题名(如朔)")
@@ -22,11 +24,11 @@ class ColumnIssue(Base):
     
     articles: Mapped[List["ColumnArticle"]] = relationship("ColumnArticle", back_populates="issue", cascade="all, delete-orphan")
 
-class ColumnArticle(Base):
+class ColumnArticle(Base, TimestampMixin):
     __tablename__ = "column_articles"
     __table_args__ = {"comment": "期刊下级联发布的具体文章正文表"}
 
-    id: Mapped[str] = mapped_column(String(100), primary_key=True, comment="文章唯一标识ID")
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), comment="文章唯一标识ID(UUID)")
     issue_id: Mapped[str] = mapped_column(String(100), ForeignKey("column_issues.id", ondelete="CASCADE"), nullable=False, comment="所属期刊ID外键")
     title: Mapped[str] = mapped_column(String(255), nullable=False, comment="文章主标题")
     subtitle: Mapped[Optional[str]] = mapped_column(String(255), comment="文章副标题")

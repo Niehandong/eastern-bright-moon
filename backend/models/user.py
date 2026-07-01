@@ -1,8 +1,9 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String
 from utils.session import Base
+from utils.mixins import TimestampMixin
 
-class User(Base):
+class User(Base, TimestampMixin):
     __tablename__ = "users"
     __table_args__ = {"comment": "系统后台安全管理员账户表"}
 

@@ -198,7 +198,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
           method: 'POST',
           headers: authHeaders,
           body: JSON.stringify({
-            id: values.id || `moon-${Date.now()}`,
+            id: values.id || undefined,
             name: values.name,
             english_name: values.english_name,
             keywords: values.keywords,
@@ -214,7 +214,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
           method: 'POST',
           headers: authHeaders,
           body: JSON.stringify({
-            id: values.id || `photo-${Date.now()}`,
+            id: values.id || undefined,
             title: values.title,
             category: values.category,
             location: values.location,
@@ -229,7 +229,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
           method: 'POST',
           headers: authHeaders,
           body: JSON.stringify({
-            id: values.id || `issue-${Date.now()}`,
+            id: values.id || undefined,
             title: values.title,
             issue_no: values.issue_no,
             issue_title: values.issue_title,
@@ -249,7 +249,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
           method: 'POST',
           headers: authHeaders,
           body: JSON.stringify({
-            id: values.id || `review-${Date.now()}`,
+            id: values.id || undefined,
             title: values.title,
             subtitle: values.subtitle,
             artist: values.artist,
@@ -266,7 +266,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
           method: 'POST',
           headers: authHeaders,
           body: JSON.stringify({
-            id: values.id || `footprint-${Date.now()}`,
+            id: values.id || undefined,
             city: values.city,
             city_en: values.city_en,
             country: values.country,

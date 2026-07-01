@@ -1,0 +1,572 @@
+{
+  "column_issues": [
+    {
+      "id": "issue-2",
+      "title": "遇见世界",
+      "issue_no": "第二期",
+      "issue_title": "青",
+      "subtitle": "雨过天晴，万物浸润，幽微里的那一抹生息",
+      "date": "2025-05-01",
+      "main_image": "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=1200&q=80",
+      "summary": "青，东方木之色也，代表生命在幽微之中挣扎出来的第一抹亮色。它是草木新发，也是远山含黛，是江南雨后的一袭清凉，本期结合法国南部与中国江南的青绿色彩进行跨时空的对话。",
+      "text_content": "青，是生命蓬勃前的自审与自持。\n它不是艳俗明朗的绿，而是掺和了黛、白、甚至一抹冷灰的东方青色。在宋瓷中，‘雨过天青云破处’是无法复刻的巅峰；在法国南部的山间，普罗旺斯的碧色橡木林在薄雾里展现着异曲同工的朦胧质感。青色，代表着一种既生机勃勃又极其内敛的状态。在本期《遇见世界·青》中，我们行走在一座座古老的松林和被雨水洗刷过的石阶上，试图用镜头和文字记录并解构这抹最不可捉摸的‘天青色’，那是属于风暴过后的、永恒的和解与平静。",
+      "wechat_link": "https://mp.weixin.qq.com/s/placeholder-qing",
+      "tags": "[\"\\u6cd5\\u56fd\\u5357\\u90e8\", \"\\u5927\\u5b8b\\u5929\\u9752\", \"\\u6c5f\\u5357\\u884c\\u8d70\"]"
+    },
+    {
+      "id": "issue-3",
+      "title": "遇见世界",
+      "issue_no": "第三期",
+      "issue_title": "青",
+      "subtitle": "雨过天晴，万物浸润，幽微里的那一抹生息",
+      "date": "2025-05-01",
+      "main_image": "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=1200&q=80",
+      "summary": "青，东方木之色也，代表生命在幽微之中挣扎出来的第一抹亮色。它是草木新发，也是远山含黛，是江南雨后的一袭清凉，本期结合法国南部与中国江南的青绿色彩进行跨时空的对话。",
+      "text_content": "青，是生命蓬勃前的自审与自持。\n\n它不是艳俗明朗的绿，而是掺和了黛、白、甚至一抹冷灰的东方青色。在宋瓷中，‘雨过天青云破处’是无法复刻的巅峰；在法国南部的山间，普罗旺斯的碧色橡木林在薄雾里展现着异曲同工的朦胧质感。青色，代表着一种既生机勃勃又极其内敛的状态。在本期《遇见世界·青》中，我们行走在一座座古老的松林和被雨水洗刷过的石阶上，试图用镜头和文字记录并解构这抹最不可捉摸的‘天青色’，那是属于风暴过后的、永恒的和解与平静。",
+      "wechat_link": "https://mp.weixin.qq.com/s/placeholder-qing",
+      "tags": "[\"\\u6cd5\\u56fd\\u5357\\u90e8\", \"\\u5927\\u5b8b\\u5929\\u9752\", \"\\u6c5f\\u5357\\u884c\\u8d70\"]"
+    },
+    {
+      "id": "issue-1",
+      "title": "遇见世界",
+      "issue_no": "第一期",
+      "issue_title": "朔",
+      "subtitle": "万物始于幽暗，又归于初晖",
+      "date": "2025-04-30",
+      "main_image": "https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1200&q=80",
+      "summary": "朔，月之初也。在没有光亮的那一晚，一切生命的喧嚣退回到更深邃的沉默中。此时的沉默不是消逝，是对下一次皎洁的积蓄。《遇见世界》首期，探讨东方山水里的‘留白’与自然运行最安静的那一个片刻。",
+      "text_content": "朔是不可见的旅程，新月初萌，幽暗如墨。\n在浩瀚的宇宙里，‘朔’代表着一个旧循环的隐退，和新循环最谦卑的起头。我们习惯于追求中秋的满月与圆融，却往往忽略了没有月光时的寂静之美。东方山水画里的‘留白’便是这一哲学的视觉延伸。墨色最浅处，恰是想象最丰盈的地方。当你觉得身处人生的黑夜、不知明天的方向时，或许你正站立在‘朔’的节点上。静止下来，听心跳的声音，听积雪融化的声音，静待那抹注定要降临的微茫。",
+      "wechat_link": "https://mp.weixin.qq.com/s/placeholder-shuo",
+      "tags": "[\"\\u81ea\\u7136\\u9759\\u601d\", \"\\u4e1c\\u65b9\\u7f8e\\u5b66\", \"\\u6714\\u6708\"]"
+    }
+  ],
+  "column_articles": [
+    {
+      "id": "art-1-1",
+      "issue_id": "issue-1",
+      "title": "朔月之始：万物退回幽暗里的深呼吸",
+      "subtitle": "生命周期的隐退与初萌",
+      "date": "2025-04-30",
+      "content": "在浩瀚的宇宙里，“朔”代表着一个旧循环的隐退，和新循环最谦卑的起头。我们习惯于追求中秋的满月与圆融，却往往忽略了没有月光时的寂静之美。\n当夜空最深沉、月亮完全隐匿的时候，大地的万物实际上在经历一场深呼吸。植物在黑暗里安睡，昆虫的声音也降到了最低限。这种幽暗并非虚无，而是一切生机重返胚胎状态、积蓄力量的温床。唯有懂得在长夜中静处，才能在第一屡新芽吐露时，听懂大地无声的欢歌。",
+      "sort_order": 0
+    },
+    {
+      "id": "art-1-10",
+      "issue_id": "issue-1",
+      "title": "重返自由：在声音与黑白交错的尽头安息",
+      "subtitle": "相遇、共鸣与片刻的沉浸",
+      "date": "2025-04-30",
+      "content": "生命的终点，究竟会以怎样的形式呈现？在这首期《遇见世界·朔》的末尾，我们不禁想探讨这个宏大而虚无的论题。\n当所有的画面退色为极致的黑和白，当外界所有纷繁的声音都沉入那股最原始的静默深渊，我们没有感到恐惧，反而收获了前所未有的安详与重返自由的喜悦。在这个被繁琐现实撕扯得支离破碎的世界里，能够在我的这块文字与影像切片里做片刻停留的归客们，愿我们在这极致的寂静中，相遇、相知、相通，然后，轻松地拍拍身上的微尘，重返心灵的绝对自由。",
+      "sort_order": 1
+    },
+    {
+      "id": "art-1-2",
+      "issue_id": "issue-1",
+      "title": "水墨留白：宋画里的虚实与无声之雷",
+      "subtitle": "东方山水美学的最高境界",
+      "date": "2025-04-30",
+      "content": "东方山水画里的“留白”，是“朔”之哲学在视觉上的延伸。在马远或夏圭的残山剩水里，不著一墨的宣纸，往往成了云海、大川甚至是天地间无穷无尽的万象。\n墨色最浅最空处，恰恰是观者想象最丰盈的地方。虚实相生，无声胜有声。那纸面上的“空”，就像是寂静之中的一声惊雷，震荡着观者的心灵。当代生活塞得太满、太吵闹，而退回到一幅画的留白处，就像是在心灵深处为自己腾出了一个不被侵扰的角落。",
+      "sort_order": 2
+    },
+    {
+      "id": "art-1-3",
+      "issue_id": "issue-1",
+      "title": "在京都的苔藓里，寻找侘寂的温度",
+      "subtitle": "不完美中隐藏的世界本真",
+      "date": "2025-04-30",
+      "content": "行走在西芳寺或大德寺的高低有致的庭院里，我常被那一层层厚厚的、深浅不一的绿苔击中。它们生长在潮湿的黑石缝中、古木的残躯里，默默无闻，甚至有些粗粝。\n这就是“侘寂（Wabi-Sabi）”——一种去芜存菁、坦然接受生命残缺与消逝的极致美学。京都的苔藓折射着不被雕琢的温度，它告诉我们，万物无需完美，其在风霜雨露中留下的痕迹，恰恰是其最真实、最值得被热爱的证据。在苔藓的静默中，时间放慢了脚步。",
+      "sort_order": 3
+    },
+    {
+      "id": "art-1-4",
+      "issue_id": "issue-1",
+      "title": "一盏烛火的重量：蜡泪、棉芯与夜晚的静止",
+      "subtitle": "手作器物中的静心自省",
+      "date": "2025-04-30",
+      "content": "每当我点燃自己调配的大豆蜡烛，静静看它在粗陶小盒里融化，那一小圈淡黄色的光晕，便在房间里雕刻出一个神圣的空间。\n蜡泪顺着杯壁缓缓滑落，棉芯发出微弱的噼啪声。那一刻，黑夜似乎静止了。气味是通往记忆的钥匙，檀香的悠远混杂着松雪的清冷，在这个瞬间，白日的焦躁与不安都被这团温暖的微光融化。这一只小小的蜡烛，它的重量不在于物质，而在于它能把我们带回当下，带回对自我的凝视。",
+      "sort_order": 4
+    },
+    {
+      "id": "art-1-5",
+      "issue_id": "issue-1",
+      "title": "莱姆石与重黑泥：当代空间的冷硬与柔密",
+      "subtitle": "探讨器物艺术在荒野与居所",
+      "date": "2025-04-30",
+      "content": "在一次当代器物群展上，莱姆石的白与重黑泥的黑形成了极其强烈的张力。白石由于质地轻盈、折射细腻，显示出某种天空的缥缈；而黑泥沉重粗粝，完全吸收了周围的杂音，透露出大地的寂静。\n当代生活常以冰冷的钢筋水泥构筑空间，而这些粗陶器皿的存在，就像是用手 and 温度对冷硬环境进行的一次次温和而坚韧的反抗。它们用天然的纹路和不规则的弧度，让僵硬的人工逻辑有了喘息的缝隙，使居所重归自然规律。",
+      "sort_order": 5
+    },
+    {
+      "id": "art-1-6",
+      "issue_id": "issue-1",
+      "title": "镜头之外：为何我们在日常中按动快门",
+      "subtitle": "摄影作为世界切片的真理",
+      "date": "2025-04-30",
+      "content": "对我而言，摄影从来不是对现实的机械复制，而是对某个瞬间的“深切回应”。当我们从取景器中看世界，四周的喧嚣退去，只有光影在交织起舞。\n按下快门的那一秒，是对世界赐予灵感的一声叹息与致敬。它是一张切片、一个坐标。哪怕光线很微弱，在它被镜头定格的时刻，那一抹微茫也拥有了对抗永恒虚无的力量。照片中留下的，不仅是山海与归客，更是拍摄者在那个特定时刻，对何为人生的无声叩问。",
+      "sort_order": 6
+    },
+    {
+      "id": "art-1-7",
+      "issue_id": "issue-1",
+      "title": "不言其美的山海：那些被我们遗弃的微茫瞬间",
+      "subtitle": "行者在温州与川西的手记",
+      "date": "2025-04-30",
+      "content": "在楠溪江冰冷的清流里，或在川西八郎生都刺骨的寒风中，我都感到一种由于天地过于宏大而产生的庄严寂静。山海万物不曾多言其美，它们只是日复一日、年复一年地依照古老的秩序运转。\n那些被我们行色匆匆的旅人遗忘的角落——一块苔藓密布的雨后石阶、一缕重云背后漏出的微弱天光，才包藏着大自然最丰满的情感。只有当你彻底放低身段、保持谦卑，山海才会向你敞开怀抱，让你在它永恒的寂寥中，找到灵魂的安宿之处。",
+      "sort_order": 7
+    },
+    {
+      "id": "art-1-8",
+      "issue_id": "issue-1",
+      "title": "深夜阅读：清风朗月下的思想与共鸣",
+      "subtitle": "在泛黄的书页中与古人重逢",
+      "date": "2025-04-30",
+      "content": "每逢清风朗月的夜晚，我喜欢合上电子设备，点亮香炉与微弱的灯火，抽出一卷发黄的书册。在纸墨香气中，时空的界限变得模糊。\n那些几百年前在黑暗中低吟、在孤独里落笔的作者，他们的字句在这微弱光线的投影下跃入我的脑海。那种相遇与共鸣，超越了生死、阶级与国家的藩篱。那一刻，你并不孤单，因为曾有无数寂寞而高贵的灵魂在同样的夜空下，为你点燃过一盏思想之灯。阅读，成为了尘世中最温柔的重逢。",
+      "sort_order": 8
+    },
+    {
+      "id": "art-1-9",
+      "issue_id": "issue-1",
+      "title": "手作的温度：指尖抚摸陶土时的粗粝自审",
+      "subtitle": "拉坯转盘上的冥想之旅",
+      "date": "2025-04-30",
+      "content": "当双手沾满湿润的太湖粘土，耳边只有拉坯机轮盘匀速转动的沙沙声，你就会惊奇地发现，所有的念头都消失了。陶泥是十分敏感的，你呼吸有一丝急促、手指有一力过猛，它在瞬间就会塌陷、走形。\n拉坯是一场双手与泥土最诚实的搏斗，也是最深沉的心理自审。粗粝的沙粒在指尖打磨，逼着你放下所有虚伪的技巧和骄傲，老老实实去顺应泥土的个性和重力的规律。每一个最终烧制而成的陶器，其微小的瑕疵其实都是制作者在那个转瞬即逝的瞬间，最真实的生命刻度。",
+      "sort_order": 9
+    },
+    {
+      "id": "art-2-1",
+      "issue_id": "issue-2",
+      "title": "天青云破：雨后宋瓷里的神秘极简",
+      "subtitle": "寻迹汝瓷永恒的纯净世界",
+      "date": "2025-05-01",
+      "content": "大宋徽宗的那句“雨过天青云破处，这般颜色做将来”，让一种略带感伤也极具神秘的青色，成为了东方美学的永恒图腾。那不是草率的翠，而是带着冷灰、白玉和极度内敛的雨后青空之色。",
+      "sort_order": 0
+    },
+    {
+      "id": "art-2-2",
+      "issue_id": "issue-2",
+      "title": "普罗旺斯的碧青橡木：南法山野的草本朦胧",
+      "subtitle": "跨越欧亚大陆的生态色彩共鸣",
+      "date": "2025-05-01",
+      "content": "在法国普罗旺斯起伏的峡谷中，大片低矮的碧青色橡木林铺陈在阿尔卑斯余脉湿润的早雾里。这些耐干旱的针叶与灌木，在烈日下散发出浓烈的柏木油脂与干燥百里香的独特气味，呈现出一种超越了地理与生命的共鸣，那是地道而粗犷的自愈色彩。",
+      "sort_order": 1
+    }
+  ],
+  "exhibition_reviews": [
+    {
+      "id": "review-2",
+      "title": "光影切片：寂夜之美",
+      "subtitle": "Slices of Light: The Beauty of Quiet Night",
+      "artist": "中日艺术家手作光影设计联展",
+      "gallery_name": "上海当代艺术博物馆 Power Station of Art",
+      "date": "2025-12-01",
+      "rating": 4.8,
+      "review_text": "用旧工业厂房巨大的硬质钢筋和水泥黑暗，来承载最微小的、飘摇的手工光影，这个展览的设计本身就是一首宏大的建筑诗。展览的核心是在一个漆黑的长廊中，两排手工和纸灯笼与二十几盏正在静静燃烧的手工蜂蜡。冷硬的混凝土结构与温暖和煦的明火撞击，让人切实感受到即便再脆弱、卑微的闪烁，也在用温暖的光芒努力雕刻着空间那令人窒息的广阔与深邃。",
+      "poster_url": "https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "review-3",
+      "title": "无声的漫涉：流变之印",
+      "subtitle": "Silent Diffusion: Changing Prints on Mulberry Paper",
+      "artist": "当代水墨艺术家个展",
+      "gallery_name": "木木美术馆 M WOODS Museum",
+      "date": "2026-03-01",
+      "rating": 4.9,
+      "review_text": "极富张力的是，每一幅悬挂在大堂的宣纸上的水墨画都在随着展厅内微妙的温度和湿度变化，进行极其微弱的扩散，时间在这里被具象化，变得肉眼可见。展厅中心设置了一尊青铜制的流线型熏香炉，白檀的烟气在投射的高光中升腾变幻，和白壁上的淡墨黑痕产生了精妙的太极呼应，完成了关于‘空’与‘满’、‘动’与‘静’的双向哲理阐释。",
+      "poster_url": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "review-4",
+      "title": "归去来：荒野与木作之息",
+      "subtitle": "The Return: Whispers of Wilderness & Woodcraft",
+      "artist": "北欧与东方原木设计师特展",
+      "gallery_name": "例外艺术中心 Exception Art Center",
+      "date": "2026-05-01",
+      "rating": 4.7,
+      "review_text": "展览在开阔的挑高展厅中陈列了一批不经刻意雕饰的古老原木器物。有些木件上还保留着当年森林火灾残留的焦黑痕迹。指尖抚摸着粗糙的树轮，好似在与百年前的一棵松木低声私语。空间中飘荡着轻柔的百里香与广藿香的气息，令每一位步入展厅的都市行者都能瞬间卸下重担，重新找回归于自然的平静。",
+      "poster_url": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "review-1",
+      "title": "《我心归处》",
+      "subtitle": "TAKE ME HOME",
+      "artist": "Es Devlin",
+      "gallery_name": "深圳湾文化广场",
+      "date": "2025-12-24",
+      "rating": 3.0,
+      "review_text": "一楼的墙面挂满了艺术家的草稿图，中间有一条光影环带，轮播着艺术家珍藏的书本智言。\n\n二楼，是观看8分钟的影像长卷的影厅，任由地面沧海桑田，天空的飞翔记忆载入鸟类基因亘古不变。影片的结尾与开头通过一个光圈的层层重叠来衔接，穿越无尽的时空通道，进入下一个时代。该形状在埃斯·德夫林的作品中经常见到，其著作封面便是如此，她将自己的作品描述为一系列透过镜头观察的项目。“我试图通过他人的眼睛去看世界。”埃斯·德夫林表示。",
+      "poster_url": "/static/uploads/2026-06-30/95b8ac23-95f3-4b17-a8e7-cbe0fce99676.jpg"
+    }
+  ],
+  "photo_items": [
+    {
+      "id": "photo-2",
+      "title": "微茫清流",
+      "category": "景观",
+      "location": "温州 · 楠溪江",
+      "date": "2025-02-01",
+      "image_url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80",
+      "description": "阴郁的寒冬，溪水泛着铅灰色的清冷。泛舟江上，只有午后重云偶然撕裂的那一秒，一整道纯净天光劈入水面。原本暗淡的卵石底骤然亮如黄金，那一刻，仿佛瞥见了尘世之外的秘密通道。"
+    },
+    {
+      "id": "photo-3",
+      "title": "林深宿雾",
+      "category": "草木",
+      "location": "青城山 · 幽道",
+      "date": "2025-04-01",
+      "image_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+      "description": "细雨过后的山林，弥漫着松针落叶和草本植物特有的润泽气息。山岚薄雾从谷底深处慢腾腾地浮上来，将笔挺挺的参天红杉淹没大半，四周只留下一片极致的幽绿与水墨晕染般的寂寥。"
+    },
+    {
+      "id": "photo-4",
+      "title": "沧浪微光",
+      "category": "景观",
+      "location": "舟山 · 离岛",
+      "date": "2024-08-01",
+      "image_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
+      "description": "退潮前的薄暮，海天处于同一层暧昧的冷蓝。渔排与碎浪在晦暗中沉寂，只有最边缘处的沙滩，在一层细腻的泡沫折射下，残留着最后一丝微弱却璀璨的日落余辉。"
+    },
+    {
+      "id": "photo-5",
+      "title": "青空之寂",
+      "category": "景观",
+      "location": "川西 · 贡嘎八郎生都",
+      "date": "2025-09-01",
+      "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
+      "description": "在海拔四千两百米的原野上。风像刀一样刮过，荒原寂寂。那座巨大的雪白色峰群在宝蓝的晴空下如巍峨的君王，俯瞰着尘世间的聚散与渺小，令人不禁屏住呼吸，重拾对天地的崇敬。"
+    },
+    {
+      "id": "photo-6",
+      "title": "城市暖光",
+      "category": "城市",
+      "location": "上海 · 弄堂深处",
+      "date": "2026-01-01",
+      "image_url": "https://images.unsplash.com/photo-1542156822-6924d1a71aba?auto=format&fit=crop&w=1200&q=80",
+      "description": "梧桐枯枝投射在红砖洋房的墙面。老弄堂转角，一盏昏黄路灯悄然亮起，给寒风中行色匆匆的归人添了一抹和暖。喧嚣的城市在此退去底噪，只剩下最质朴的温存陪伴身侧。"
+    },
+    {
+      "id": "photo-1",
+      "title": "沙洲旅人",
+      "category": "风景",
+      "location": "甘肃敦煌",
+      "date": "2023-04-02",
+      "image_url": "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80",
+      "description": "风吹沙扬，驼铃声响。"
+    }
+  ],
+  "footprint_items": [
+    {
+      "id": "fp-dunhuang",
+      "city": "敦煌",
+      "city_en": "Dunhuang",
+      "country": "中国",
+      "location": "鸣沙山 · 莫高窟",
+      "x": 22.0,
+      "y": 24.0,
+      "date": "2025-09-01",
+      "image_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "description": "大漠孤烟。鸣沙山的风，能吹平黄沙上的足迹，却吹不散莫高窟中无声端坐了千年的泥塑。落日把无边起伏的沙海染成一片瑰红，那一刻，天地之高远，令人热泪盈眶。",
+      "region": "西北"
+    },
+    {
+      "id": "fp-fuzhou",
+      "city": "福州",
+      "city_en": "Fuzhou",
+      "country": "中国",
+      "location": "三坊七巷 · 榕堂",
+      "x": 60.0,
+      "y": 65.0,
+      "date": "2024-04-01",
+      "image_url": "https://images.unsplash.com/photo-1520121401995-928cd50d4e27?auto=format&fit=crop&w=1200&q=80",
+      "description": "三坊七巷的粉墙黛瓦，在海滨独有的潮湿清晨中显得异常温润。白色的马鞍墙上，巨大的百年榕树将气根低低垂下。微风掠过天台，茉莉花茶温热的气氛在空气里静静盘旋。",
+      "region": "华东"
+    },
+    {
+      "id": "fp-guangzhou",
+      "city": "广州",
+      "city_en": "Guangzhou",
+      "country": "中国",
+      "location": "沙面 · 欧陆建筑群",
+      "x": 48.0,
+      "y": 74.0,
+      "date": "2025-11-01",
+      "image_url": "https://images.unsplash.com/photo-1525183995015-779fb58fb4cf?auto=format&fit=crop&w=1200&q=80",
+      "description": "沙面参天的古樟下，斑驳的欧式小黄楼在午后折光里浮雕般凸显。叹一盏一盅两件的晨茶，听着周围温吞的粤语寒暄，岭南的生活哲学全在这杯微微发涩的铁观音里了。",
+      "region": "大湾区"
+    },
+    {
+      "id": "fp-hangzhou",
+      "city": "杭州",
+      "city_en": "Hangzhou",
+      "country": "中国",
+      "location": "西湖 · 梅家坞",
+      "x": 62.0,
+      "y": 53.0,
+      "date": "2025-05-01",
+      "image_url": "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1200&q=80",
+      "description": "烟雨两茫茫，西湖里的扁舟如水墨点缀在茫茫碧流中。远山含黛，像极了宣纸上淡淡的擦痕。在梅家坞的深谷里，听细雨打湿竹叶，空气中尽是清新的草本茶香。",
+      "region": "华东"
+    },
+    {
+      "id": "fp-kyoto",
+      "city": "京都",
+      "city_en": "Kyoto",
+      "country": "日本",
+      "location": "岚山 · 苔之殿堂",
+      "x": 85.0,
+      "y": 39.0,
+      "date": "2024-11-01",
+      "image_url": "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80",
+      "description": "古刹的木廊之下，清晨的金线阳光刺透了层叠的枫梢。细雨微拂，深浅不一的青苔在湿润的黑石缝中默默呼吸。影子微微晃动，那一瞬，喧嚣退场，灵魂归宁。",
+      "region": "日本"
+    },
+    {
+      "id": "fp-shanghai",
+      "city": "上海",
+      "city_en": "Shanghai",
+      "country": "中国",
+      "location": "淮海中路 · 步高里",
+      "x": 64.0,
+      "y": 50.0,
+      "date": "2026-01-01",
+      "image_url": "https://images.unsplash.com/photo-1542156822-6924d1a71aba?auto=format&fit=crop&w=1200&q=80",
+      "description": "法租界的老房红砖，在枯尽的梧桐影里带着一丝欧式的慵懒。老弄堂的长椅、洗旧的单车、以及街角正飘着檀木气味的手工香薰店，汇聚成了魔都最内敛的日常切面。",
+      "region": "华东"
+    },
+    {
+      "id": "fp-shanwei",
+      "city": "汕尾",
+      "city_en": "Shanwei",
+      "country": "中国",
+      "location": "红海湾 · 暗礁岩岸",
+      "x": 53.0,
+      "y": 76.5,
+      "date": "2025-11-01",
+      "image_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80",
+      "description": "红海湾的风，带着咸涩的咆哮。纯净而暴烈的浪墙拍击着千百年来巍然矗立的黑色巨石，砸出泼天的大泡，瞬间将天地染成了纯粹的墨色与胜霜，尽显沧海的孤独与野性。",
+      "region": "大湾区"
+    },
+    {
+      "id": "fp-shenzhen",
+      "city": "深圳",
+      "city_en": "Shenzhen",
+      "country": "中国",
+      "location": "深圳湾 · 红树林",
+      "x": 49.0,
+      "y": 77.0,
+      "date": "2025-11-01",
+      "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80",
+      "description": "红树林畔清音。黑脸琵鹭贴着泛冷光的蓝色水面平滑掠过，而身后的岸边，是高达数百米的透明光纤硅谷立面。在这里，科技的高度发达，最终和最原始的自然生态安静共存。",
+      "region": "大湾区"
+    },
+    {
+      "id": "fp-tianjin",
+      "city": "天津",
+      "city_en": "Tianjin",
+      "country": "中国",
+      "location": "解放桥 · 海河畔",
+      "x": 55.0,
+      "y": 27.0,
+      "date": "2023-10-01",
+      "image_url": "https://images.unsplash.com/photo-1547984609-445a477329d4?auto=format&fit=crop&w=1200&q=80",
+      "description": "薄暮笼罩海河。百年解放桥的铁架立柱，在西洋钟楼和暖黄霓虹里展现出舒展的工业几何。河水潺潺流动，仿佛带着津门古老的烟火气，缓缓流入没有声音的浩荡海洋。",
+      "region": "华北"
+    },
+    {
+      "id": "fp-tokyo",
+      "city": "东京",
+      "city_en": "Tokyo",
+      "country": "日本",
+      "location": "新宿 · 步道天桥",
+      "x": 91.0,
+      "y": 37.0,
+      "date": "2024-11-01",
+      "image_url": "https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=1200&q=80",
+      "description": "在新宿黄昏的楼群缝隙中，看橘红色的电车发出规律的摩擦声穿过天桥。四周人流如鲫，却让人在高度秩序的都市峡谷中，体会到一种最谦卑而安静的寂寞。",
+      "region": "日本"
+    },
+    {
+      "id": "fp-wuhan",
+      "city": "武汉",
+      "city_en": "Wuhan",
+      "country": "中国",
+      "location": "长江大桥 · 蛇山",
+      "x": 49.0,
+      "y": 52.0,
+      "date": "2024-12-01",
+      "image_url": "https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=1200&q=80",
+      "description": "冬日江城，薄雾漫天。大桥下江水混浊奔腾，带着楚地粗狂的张力。江汉关传来的宏亮钟声震动着浓雾中过往的渡轮，街角那一碗热气腾腾的热干面锅炉，是这里最踏实的尊严。",
+      "region": "华中"
+    },
+    {
+      "id": "fp-zhongshan",
+      "city": "中山",
+      "city_en": "Zhongshan",
+      "country": "中国",
+      "location": "石岐 · 老街骑楼",
+      "x": 46.5,
+      "y": 76.5,
+      "date": "2025-11-01",
+      "image_url": "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1200&q=80",
+      "description": "歧江桥畔。石岐老街的灰泥骑楼上带着风雨打磨而出的细腻苔痕。午后阵雨不期而至，雨水顺着雕花的下水管汇入下水道，慢节奏的生活在这片榕树绿荫下永不过时。",
+      "region": "大湾区"
+    },
+    {
+      "id": "fp-zhuhai",
+      "city": "珠海",
+      "city_en": "Zhuhai",
+      "country": "中国",
+      "location": "情侣路 · 爱情邮筒",
+      "x": 45.5,
+      "y": 78.0,
+      "date": "2025-11-01",
+      "image_url": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1200&q=80",
+      "description": "南海之滨。暖湿的海风扑面而来，港珠澳大桥如同一条穿行在水墨云霭中的巨龙潜入天际。浪头一次次在坚硬的防波堤上揉碎，潮声呢喃，将这极美的蔚蓝之夜缓缓催眠。",
+      "region": "大湾区"
+    },
+    {
+      "id": "fp-beijing",
+      "city": "北京",
+      "city_en": "Beijing",
+      "country": "中国",
+      "location": "故宫 · 角楼",
+      "x": 64.2,
+      "y": 2.7,
+      "date": "2023-10-01",
+      "image_url": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1200&q=80",
+      "description": "北平之秋，最在角楼落日。深秋的银杏落了一地，微红的古城墙上映着金灿灿的光晕。老胡同深处传来袅袅的白鸽宿鸣，那是浩大都城中最温存的褶皱。",
+      "region": "华北"
+    }
+  ],
+  "moon_phases": [
+    {
+      "id": "new-moon",
+      "name": "新月",
+      "english_name": "New Moon",
+      "keywords": "开始、设定、种子",
+      "suitable": "写目标、定方向、整理愿望清单",
+      "tip": "新的周期不需要立刻热闹，先把真正重要的事情写下来。",
+      "image_url": "http://43.134.42.173:8998/static/uploads/2026-06-30/5a025b10-9473-4055-8a35-a991b0fe81b1.png",
+      "sort_order": 8
+    },
+    {
+      "id": "third-quarter",
+      "name": "下弦月",
+      "english_name": "Third Quarter",
+      "keywords": "清理、取舍、修正",
+      "suitable": "放弃无效计划、调整优先级、整理空间",
+      "tip": "不是所有计划都要坚持到底，有些放下也是前进。",
+      "image_url": "http://43.134.42.173:8998/static/uploads/2026-06-30/0d69935f-fac5-479b-99ef-a662d13d4a6d.png",
+      "sort_order": 6
+    },
+    {
+      "id": "waning-gibbous",
+      "name": "亏凸月",
+      "english_name": "Waning Gibbous",
+      "keywords": "分享、沉淀、反馈",
+      "suitable": "总结经验、分享心得、收集反馈",
+      "tip": "成果不只属于完成的那一刻，也属于你愿意复盘的过程。",
+      "image_url": "http://43.134.42.173:8998/static/uploads/2026-06-30/92cadf03-a05c-416f-9005-9f00d9a0cc32.png",
+      "sort_order": 5
+    },
+    {
+      "id": "waxing-gibbous",
+      "name": "盈凸月",
+      "english_name": "Waxing Gibbous",
+      "keywords": "调整、优化、准备",
+      "suitable": "修改方案、补充资源、完善细节",
+      "tip": "真正的进展，常常来自一次耐心的微调。",
+      "image_url": "http://43.134.42.173:8998/static/uploads/2026-06-30/1b1e0efe-03d5-4b91-bc4f-8b154f8dc730.png",
+      "sort_order": 3
+    },
+    {
+      "id": "first-quarter",
+      "name": "上弦月",
+      "english_name": "First Quarter",
+      "keywords": "推进、选择、突破",
+      "suitable": "解决阻力、做决定、开始执行",
+      "tip": "当计划遇到阻力，正是你重新选择方向的时候。",
+      "image_url": "http://43.134.42.173:8998/static/uploads/2026-06-30/aa445bae-6692-4ca9-ac91-341dcfafe457.png",
+      "sort_order": 2
+    },
+    {
+      "id": "waxing-crescent",
+      "name": "蛾眉月",
+      "english_name": "Waxing Crescent",
+      "keywords": "探索、尝试、萌芽",
+      "suitable": "小规模行动、测试新习惯、收集灵感",
+      "tip": "不用一下子做到完美，先让一个小行动发生。",
+      "image_url": "http://43.134.42.173:8998/static/uploads/2026-06-30/3ae8ad3b-5fdf-4f9c-bcc0-7d29b49cd4f6.png",
+      "sort_order": 1
+    },
+    {
+      "id": "moon-1782827011023",
+      "name": "残月",
+      "english_name": "Waning Crescent",
+      "keywords": "休息、恢复、告别",
+      "suitable": "减少消耗、放慢节奏、为新周期留白",
+      "tip": "“在重新开始之前，允许自己安静地恢复能量。”",
+      "image_url": "/static/uploads/2026-06-30/4c63d457-3788-47e4-bbce-c8b88629de20.png",
+      "sort_order": 8
+    },
+    {
+      "id": "moon-1782827096628",
+      "name": "满月",
+      "english_name": "Full Moon",
+      "keywords": "看见 完成 表达",
+      "suitable": "复盘成果、公开展示、庆祝完成",
+      "tip": "“把已经完成的事情看见，也把自己的努力看见。”",
+      "image_url": "/static/uploads/2026-06-30/cb5eed81-c55f-4490-8d72-86d48ec0f31a.png",
+      "sort_order": 8
+    }
+  ],
+  "zen_quotes": [
+    {
+      "id": "zq-1",
+      "text": "万物皆有裂痕，那是光照进来的地方。",
+      "author": "莱昂纳德 · 科恩"
+    },
+    {
+      "id": "zq-2",
+      "text": "人生的起头与落幕，往往和朔夜一样，最安静、也最广博。",
+      "author": "东方朗月"
+    },
+    {
+      "id": "zq-3",
+      "text": "江流有声，断岸千尺；山高月小，水落石出。",
+      "author": "苏轼"
+    },
+    {
+      "id": "zq-4",
+      "text": "无一物中无尽藏，有花有月有楼台。",
+      "author": "禅宗偈语"
+    },
+    {
+      "id": "zq-5",
+      "text": "光即使微弱如丝，在十足的黑暗中也是不可分割的庞然大物。",
+      "author": "空间漫行手记"
+    },
+    {
+      "id": "zq-6",
+      "text": "回归最朴实的器物、最轻曼的草木香，便是对浮躁生活最坚毅的自审。",
+      "author": "东方朗月"
+    }
+  ],
+  "personal_bio": [
+    {
+      "id": 1,
+      "name": "东方朗月",
+      "name_en": "Eastern Bright Moon",
+      "title": "文化传播、故事倾听、美的发现",
+      "motto": "星河万里映神州，清风朗月照归人。",
+      "intro_paragraphs": "[\"\\u6211\\u662f\\u4e1c\\u65b9\\u6717\\u6708\\u3002\\u4e00\\u4e2a\\u5728\\u6587\\u5316\\u4e2d\\u6f2b\\u6b65\\u3001\\u5728\\u65e5\\u5e38\\u4e2d\\u8bb0\\u5f55\\u7684\\u884c\\u8005\\u3002\\u751f\\u6d3b\\u3001\\u6444\\u5f71\\u4e0e\\u624b\\u4f5c\\uff0c\\u7686\\u662f\\u6211\\u63a2\\u5bfb\\u4f55\\u4e3a\\u4eba\\u751f\\u7684\\u5a92\\u4ecb\\u3002\", \"\\u827a\\u672f\\u5982\\u660e\\u6708\\u9ad8\\u7167\\uff0c\\u6da6\\u7269\\u65e0\\u58f0\\u3002\", \"\\u5b83\\u6765\\u6e90\\u4e8e\\u81ea\\u7136\\u4e0e\\u751f\\u6d3b\\u3001\\u8fdc\\u53e4\\u4e0e\\u672a\\u6765\\uff0c\", \"\\u628a\\u5b9e\\u9645\\u7269\\u8d28\\u6d53\\u7f29\\u4e3a\\u62bd\\u8c61\\u7684\\u7b26\\u53f7\\uff0c\", \"\\u628a\\u865a\\u65e0\\u7684\\u7f8e\\u611f\\u6295\\u5c04\\u5728\\u65e5\\u5e38\\u7684\\u89d2\\u843d\\u3002\", \"\\u5728\\u8fd9\\u6bb5\\u957f\\u9014\\u8dcb\\u6d89\\u7684\\u65c5\\u7a0b\\u4e2d\\uff0c\", \"\\u6211\\u4eec\\u6536\\u96c6\\u5404\\u79cd\\u5404\\u6837\\u7684\\u788e\\u7247\\uff0c\\u4f01\\u56fe\\u627e\\u5230\\u5fc3\\u7075\\u7684\\u5f52\\u5bbf\\u3002\", \"For Free\\u3002\"]",
+      "cover_image": "/static/uploads/2026-06-30/4bd3ab17-7d2b-4a2d-b5fc-231607a0ab31.png"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "hashed_password": "$2b$12$5l5L7KM9IXLxPM1uFXeCCeagZ3augJmS1Sem5Xv5GU1wpC1veZuSK",
+      "is_active": true
+    }
+  ]
+}

@@ -2,8 +2,9 @@ from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import JSON, String
 from typing import List, Optional
 from utils.session import Base
+from utils.mixins import TimestampMixin
 
-class PersonalBio(Base):
+class PersonalBio(Base, TimestampMixin):
     __tablename__ = "personal_bio"
     __table_args__ = {"comment": "艺术家个人美学自述简介表"}
 
