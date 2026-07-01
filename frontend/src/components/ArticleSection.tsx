@@ -167,7 +167,7 @@ export const ArticleSection: React.FC = () => {
                       {issue.title} &middot; Series
                     </span>
                     <h3 className="text-2xl font-light tracking-widest text-brand-dark flex items-center gap-3">
-                      第{issue.id === 'issue-1' ? '一' : '二'}期 &middot; <span className="font-semibold text-brand-gold text-2xl">{issue.issueTitle}</span>
+                      {issue.issueNo} &middot; <span className="font-semibold text-brand-gold text-2xl">{issue.issueTitle}</span>
                     </h3>
                     <p className="text-brand-dark/40 font-serif italic text-xs tracking-wider">
                       {issue.subtitle}
@@ -391,7 +391,7 @@ export const ArticleSection: React.FC = () => {
                     </div>
 
                     {/* Poetic prose */}
-                    <div className="font-serif text-sm md:text-base leading-relaxed tracking-wider text-justify whitespace-pre-line text-brand-dark/90 font-light indent-8">
+                    <div className="font-serif text-sm md:text-base leading-relaxed tracking-wider text-justify whitespace-pre-line text-brand-dark/90 font-light">
                       {selectedIssue.textContent}
                     </div>
 
@@ -474,7 +474,7 @@ export const ArticleSection: React.FC = () => {
                           <div className="w-12 h-[1px] bg-brand-gold/30 mt-2 mb-4" />
 
                           {/* Article Text Content */}
-                          <div className="font-serif text-sm md:text-base leading-relaxed tracking-wider text-justify whitespace-pre-line text-brand-dark/90 font-light indent-8">
+                          <div className="font-serif text-sm md:text-base leading-relaxed tracking-wider text-justify whitespace-pre-line text-brand-dark/90 font-light">
                             {currentArticle.content}
                           </div>
                           
@@ -519,7 +519,7 @@ export const ArticleSection: React.FC = () => {
                     
                     <a
                       id="btn-link-wechat-direct"
-                      href="https://mp.weixin.qq.com"
+                      href={selectedIssue.wechatLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-brand-dark text-brand-cream px-5 py-2 hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 border border-brand-gold/30 font-medium font-serif text-xs tracking-widest flex items-center gap-2"
