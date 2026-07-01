@@ -543,9 +543,11 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
   ] : activeKey === 'footprints' ? [
     { title: '序号', key: 'index', render: (_1: any, _2: any, index: number) => index + 1, width: 80, align: 'center' },
     { title: '城市', dataIndex: 'city', key: 'city', align: 'center' },
-    { title: '国家', dataIndex: 'country', key: 'country', align: 'center' },
     { title: '区域', dataIndex: 'region', key: 'region', align: 'center' },
-    { title: '坐标', key: 'coords', align: 'center', render: (_: any, r: any) => `(${r.x}, ${r.y})` },
+    { title: '定点地标', dataIndex: 'location', key: 'location', align: 'center' },
+    { title: '纬度', dataIndex: 'lat', key: 'lat', align: 'center' },
+    { title: '经度', dataIndex: 'lng', key: 'lng', align: 'center' },
+    { title: '日期', dataIndex: 'date', key: 'date', align: 'center' },
     {
       title: '操作', key: 'action', align: 'center', render: (_: any, record: any) => (
         <Space size="small">
