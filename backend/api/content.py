@@ -3,6 +3,25 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
 from typing import List
+import datetime
+
+
+def _to_date(value):
+    """将 'YYYY-MM-DD' 字符串安全转为 date 对象；空值返回 None；已是 date 则原样返回。
+
+    PostgreSQL(asyncpg) 的 DATE 字段只接受 date 对象，不接受字符串，
+    故写库前必须显式转换。
+    """
+    if value in (None, ""):
+        return None
+    if isinstance(value, datetime.date):
+        return value
+    if isinstance(value, str):
+        try:
+            return datetime.date.fromisoformat(value[:10])
+        except ValueError:
+            return None
+    return value
 
 from utils.session import get_db
 from api.auth import get_current_user
@@ -87,7 +106,11 @@ async def create_issue(
         issue_data["tags"] = [t.strip() for t in tags.split(",") if t.strip()]
     elif tags is None:
         issue_data["tags"] = []
-        
+
+    # 日期字段：dict 路径绕过了 Pydantic，需手动把字符串转成 date（asyncpg 要求）
+    if "date" in issue_data:
+        issue_data["date"] = _to_date(issue_data.get("date"))
+
     issue_id = issue_data.get("id")
     if not issue_id:
         issue_id = f"issue-{int(time.time())}"
@@ -118,7 +141,7 @@ async def create_issue(
             issue_id=db_issue.id,
             title=art.get("title", "未命名目录"),
             subtitle=art.get("subtitle", ""),
-            date=art.get("date") or db_issue.date,
+            date=_to_date(art.get("date")) or db_issue.date,
             content=art.get("content", ""),
             sort_order=int(art.get("sort_order") or idx)
         )

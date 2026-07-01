@@ -11,7 +11,7 @@
 
 ## 🎐 项目版图介绍
 
-**「东方朗月」** 是一款专为崇尚东方静谧美学、禅意留白的创意工作者与生活家打造的数字化自省、美学期刊以及足迹行记空间。系统采用前后台完全独立、全类型安全的现代化异步架构（FastAPI + React + MySQL），将前沿的响应式计算与宋体/衬线字形排版合而为一。
+**「东方朗月」** 是一款专为崇尚东方静谧美学、禅意留白的创意工作者与生活家打造的数字化自省、美学期刊以及足迹行记空间。系统采用前后台完全独立、全类型安全的现代化异步架构（FastAPI + React + PostgreSQL），将前沿的响应式计算与宋体/衬线字形排版合而为一。
 
 *   **🌙 月之谕 (Lunar Oracle)**：
     动态读取月轮阴影盈亏（新月、弯月、满月、残月），配有高拟真、发光的圆轮珍珠金卡片。内置**5 步递进式手抄本 Modal 计划生成器**，支持自省计划的物理草稿保留、羊皮纸质感生成输出。
@@ -26,12 +26,14 @@
 
 ## 🛠️ 后端启动指南（Python 虚拟环境）
 
-后端采用 **FastAPI + SQLAlchemy 2.0 (Async) + Pydantic v2 + bcrypt** 搭建，数据库文件默认通过 **aiomysql** 驱动进行高性能异步读写，静态资源配有**时间轴自动归档（`static/uploads/YYYY-MM-DD/`）**机制。
+后端采用 **FastAPI + SQLAlchemy 2.0 (Async) + Pydantic v2 + bcrypt** 搭建，数据库为 **PostgreSQL**，通过 **asyncpg** 驱动进行高性能异步读写，静态资源配有**时间轴自动归档（`static/uploads/YYYY-MM-DD/`）**机制。
+
+> ⚠️ **数据库注意事项**：本项目使用 PostgreSQL（`postgresql+asyncpg://...`）。asyncpg 对类型要求严格，`DATE` 字段只接受 Python `date` 对象、不接受字符串（这与 MySQL 驱动不同）。
 
 ### 1. 环境准备
 确保您的物理机上已安装：
 *   **Python 3.10+**
-*   **MySQL 8.0+**
+*   **PostgreSQL 14+**
 *   **Redis**（用于高安全 JWT 令牌废弃拉黑机制）
 
 ### 2. 使用虚拟环境 (Virtual Environment) 启动
@@ -111,15 +113,20 @@ npm run dev
 
 ## 🗄️ 数据库 DDL 初始建表与种子灌装
 
-如果您需要重新在本地离线导入或备份整个项目的 MySQL 数据库：
-1. 建立空数据库：
+本项目使用 **PostgreSQL**，表结构由 SQLAlchemy 模型自动生成，无需手写 DDL。
+
+1. 建立空数据库（在 PostgreSQL 中执行）：
    ```sql
-   CREATE DATABASE IF NOT EXISTS `eastern` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   CREATE DATABASE eastern WITH ENCODING 'UTF8';
    ```
-2. 在项目根目录下，执行一键 SQL 灌装导入：
+2. 在 `backend/.env` 中配置好 `DATABASE_URL`（形如 `postgresql+asyncpg://用户名:密码@主机:端口/eastern`）。
+3. 在 `backend/` 目录下，运行初始化脚本，自动建表并写入默认管理员账户（`admin` / `admin`）：
    ```bash
-   mysql -u [您的用户名] -p eastern < eastern.sql
+   ../venv/bin/python init_db.py
    ```
+   > ⚠️ `init_db.py` 会先 **drop_all 再 create_all**（清空并重建所有表），仅用于全新初始化，切勿在生产数据上执行。
+
+> 📌 关于根目录的 `eastern.sql`：那是早期 **MySQL 格式**的历史转储（含反引号与 `utf8mb4` 排序规则），**不能**直接用 `psql` 导入 PostgreSQL，仅作历史归档参考。当初 MySQL → PostgreSQL 的数据迁移由 `backend/migrate_data.py` 完成。
 
 ---
 

@@ -21,7 +21,7 @@ class ArticleBase(BaseModel):
     id: str
     title: str
     subtitle: Optional[str] = None
-    date: Optional[str] = None
+    date: Optional[datetime.date] = None
     content: str
     sort_order: int = 0
 
