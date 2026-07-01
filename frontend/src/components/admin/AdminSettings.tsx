@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { API_BASE_URL } from '../../services/api';
+import { request } from '../../services/api';
 
 export const AdminSettings: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -11,7 +11,7 @@ export const AdminSettings: React.FC = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('admin_token');
-      const res = await fetch(`${API_BASE_URL}/auth/password`, {
+      await request('/auth/password', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -22,11 +22,6 @@ export const AdminSettings: React.FC = () => {
           new_password: values.newPassword
         }),
       });
-
-      if (!res.ok) {
-        const errData = await res.json();
-        throw new Error(errData.detail || '密码修改失败');
-      }
 
       message.success('密码修改成功，安全凭证已失效，请重新登录！');
       localStorage.removeItem('admin_token');

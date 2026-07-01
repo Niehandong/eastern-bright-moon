@@ -5,7 +5,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { api } from '../services/api';
+import { api, resolveAssetUrl } from '../services/api';
 import { ColumnIssue, ExhibitionReview } from '../types';
 import { BookOpen, ExternalLink, ArrowRight, Eye, Calendar, Sparkles, MapPin, Feather, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -146,7 +146,7 @@ export const ArticleSection: React.FC = () => {
                 <div className="relative w-full aspect-[16/10] overflow-hidden">
                   <div className="absolute inset-0 bg-brand-dark/15 z-10 pointer-events-none group-hover:bg-brand-dark/5 transition-all duration-500" />
                   <img
-                    src={issue.mainImage}
+                    src={resolveAssetUrl(issue.mainImage)}
                     alt={issue.issueTitle}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-[2s] ease-out scale-100 group-hover:scale-105"
@@ -274,7 +274,7 @@ export const ArticleSection: React.FC = () => {
                         {/* Core image */}
                         <div className="w-full h-full bg-[#fcfbfa] overflow-hidden border border-[#e8e2d8]/50 relative">
                           <img
-                            src={review.posterUrl}
+                            src={resolveAssetUrl(review.posterUrl)}
                             alt={review.title}
                             referrerPolicy="no-referrer"
                             className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-103 grayscale-[15%] group-hover:grayscale-0 brightness-[99%]"
@@ -356,7 +356,7 @@ export const ArticleSection: React.FC = () => {
               {/* Left Column of Modal: Big Image with specs */}
               <div className="w-full md:w-2/5 relative h-64 md:h-auto bg-brand-ink min-h-[300px]">
                 <img
-                  src={selectedIssue.mainImage}
+                  src={resolveAssetUrl(selectedIssue.mainImage)}
                   alt={selectedIssue.issueTitle}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover brightness-75 saturation-75"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Popconfirm, Form, Input, Upload, message, Space, DatePicker, Select } from 'antd';
 import { PlusOutlined, UploadOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
-import { api, API_BASE_URL, API_ORIGIN } from '../../services/api';
+import { api, API_ORIGIN, request, resolveAssetUrl } from '../../services/api';
 import { ChinaConstellationMap } from '../ChinaConstellationMap';
 
 interface AdminContentManagerProps {
@@ -150,14 +150,22 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
       onChange(info: any) {
         if (info.file.status === 'uploading') {
           messageApi.loading({ content: '正在极速本地化上传图片...', key: 'img_upload' });
+          return;
         }
         if (info.file.status === 'done') {
-          const relativeUrl = info.file.response.url;
-          const absoluteUrl = `${API_ORIGIN}${relativeUrl}`;
-          form.setFieldValue(fieldName, absoluteUrl);
-          messageApi.success({ content: '上传并本地化成功！', key: 'img_upload', duration: 1.5 });
+          // 后端统一返回信封 { code, message, data }；接口恒为 HTTP 200，
+          // 因此即便业务失败 antd 也会判定为 done，需手动按 code 判定成败。
+          const resp = info.file.response;
+          if (resp && resp.code === 200 && resp.data?.url) {
+            // 数据库只存后端返回的相对路径（/static/uploads/...），
+            // 展示时由 resolveAssetUrl 统一按环境补齐来源，保证存储格式一致。
+            form.setFieldValue(fieldName, resp.data.url);
+            messageApi.success({ content: '上传并本地化成功！', key: 'img_upload', duration: 1.5 });
+          } else {
+            messageApi.error({ content: resp?.message || '上传失败，请检查图片格式或体积(≤10M)', key: 'img_upload', duration: 2 });
+          }
         } else if (info.file.status === 'error') {
-          messageApi.error({ content: '上传失败，请检查登录凭证或图片体积(≤10M)', key: 'img_upload', duration: 2 });
+          messageApi.error({ content: '上传失败，请检查登录凭证或网络连接', key: 'img_upload', duration: 2 });
         }
       },
     };
@@ -166,13 +174,14 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
   const onSave = async (values: any) => {
     const token = localStorage.getItem('admin_token');
     try {
+      const authHeaders = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      };
       if (activeKey === 'bio') {
-        const res = await fetch(`${API_BASE_URL}/admin/bio`, {
+        await request('/admin/bio', {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
+          headers: authHeaders,
           body: JSON.stringify({
             name: values.name,
             name_en: values.nameEn,
@@ -182,16 +191,12 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
             cover_image: values.coverImage
           })
         });
-        if (!res.ok) throw new Error('保存简介失败');
         api.clearBioCache();
         messageApi.success('个人信息更新成功！');
       } else if (activeKey === 'moons') {
-        const res = await fetch(`${API_BASE_URL}/admin/moon-phases`, {
+        await request('/admin/moon-phases', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
+          headers: authHeaders,
           body: JSON.stringify({
             id: values.id || `moon-${Date.now()}`,
             name: values.name,
@@ -203,15 +208,11 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
             sort_order: Number(values.sort_order || 8)
           })
         });
-        if (!res.ok) throw new Error('保存月相失败');
         messageApi.success('今日月相更新成功！');
       } else if (activeKey === 'photos') {
-        const res = await fetch(`${API_BASE_URL}/admin/photos`, {
+        await request('/admin/photos', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
+          headers: authHeaders,
           body: JSON.stringify({
             id: values.id || `photo-${Date.now()}`,
             title: values.title,
@@ -222,15 +223,11 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
             description: values.description
           })
         });
-        if (!res.ok) throw new Error('新增作品失败');
         messageApi.success('摄影画谱新增成功！');
       } else if (activeKey === 'issues') {
-        const res = await fetch(`${API_BASE_URL}/admin/issues`, {
+        await request('/admin/issues', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
+          headers: authHeaders,
           body: JSON.stringify({
             id: values.id || `issue-${Date.now()}`,
             title: values.title,
@@ -246,15 +243,11 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
             articles: values.articles || [] // 级联传递动态拓展的子文章目录
           })
         });
-        if (!res.ok) throw new Error('新增期刊失败');
         messageApi.success('杂志期刊保存成功！');
       } else if (activeKey === 'reviews') {
-        const res = await fetch(`${API_BASE_URL}/admin/exhibitions`, {
+        await request('/admin/exhibitions', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
+          headers: authHeaders,
           body: JSON.stringify({
             id: values.id || `review-${Date.now()}`,
             title: values.title,
@@ -267,15 +260,11 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
             poster_url: values.poster_url
           })
         });
-        if (!res.ok) throw new Error('新增展评失败');
         messageApi.success('艺术展评新增成功！');
       } else if (activeKey === 'footprints') {
-        const res = await fetch(`${API_BASE_URL}/admin/footprints`, {
+        await request('/admin/footprints', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
+          headers: authHeaders,
           body: JSON.stringify({
             id: values.id || `footprint-${Date.now()}`,
             city: values.city,
@@ -290,7 +279,6 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
             region: values.region
           })
         });
-        if (!res.ok) throw new Error('新增足迹失败');
         messageApi.success('足迹定点新增成功！');
       }
       setDrawerVisible(false);
@@ -313,13 +301,12 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
     if (!path) return;
     
     try {
-      const res = await fetch(`${API_BASE_URL}/admin/${path}/${id}`, {
+      await request(`/admin/${path}/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
-      if (!res.ok) throw new Error('删除失败');
       messageApi.success('数据已成功物理移除！');
       loadData();
     } catch (err: any) {
@@ -365,7 +352,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
       render: (url: string) => (
         <div className="border border-[#e8e2d8] p-0.5 bg-white shadow-sm w-12 h-12 flex items-center justify-center mx-auto overflow-hidden">
           {url ? (
-            <img src={url} alt="Moon Preview" className="h-full w-full object-cover" />
+            <img src={resolveAssetUrl(url)} alt="Moon Preview" className="h-full w-full object-cover" />
           ) : (
             <span className="text-[9px] text-[#8c8273]/40">无图</span>
           )}
@@ -688,7 +675,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
                 {coverImageWatch && (
                   <div className="border border-[#e8e2d8] p-1 bg-white shadow-sm max-w-full relative group overflow-hidden">
                     <img 
-                      src={coverImageWatch} 
+                      src={resolveAssetUrl(coverImageWatch)}
                       alt="Cover Preview" 
                       className="h-20 w-auto object-cover max-w-full"
                       onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
@@ -801,7 +788,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
                   {imageUrlWatch && (
                     <div className="border border-[#e8e2d8] p-1 bg-white shadow-sm max-w-full relative group overflow-hidden h-20 w-20 flex items-center justify-center">
                       <img 
-                        src={imageUrlWatch} 
+                        src={resolveAssetUrl(imageUrlWatch)} 
                         alt="Moon Preview" 
                         className="h-full w-full object-cover"
                         onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
@@ -871,7 +858,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
                   {photoImageUrlWatch && (
                     <div className="border border-[#e8e2d8] p-1 bg-white shadow-sm max-w-full relative group overflow-hidden h-20 w-20 flex items-center justify-center">
                       <img 
-                        src={photoImageUrlWatch} 
+                        src={resolveAssetUrl(photoImageUrlWatch)} 
                         alt="Photo Preview" 
                         className="h-full w-full object-cover"
                         onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
@@ -941,7 +928,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
                   {issueMainImageWatch && (
                     <div className="border border-[#e8e2d8] p-1 bg-white shadow-sm max-w-full relative group overflow-hidden h-20 w-20 flex items-center justify-center">
                       <img 
-                        src={issueMainImageWatch} 
+                        src={resolveAssetUrl(issueMainImageWatch)} 
                         alt="Issue Cover Preview" 
                         className="h-full w-full object-cover"
                         onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
@@ -1076,7 +1063,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
                   {reviewPosterUrlWatch && (
                     <div className="border border-[#e8e2d8] p-1 bg-white shadow-sm max-w-full relative group overflow-hidden h-20 w-20 flex items-center justify-center">
                       <img 
-                        src={reviewPosterUrlWatch} 
+                        src={resolveAssetUrl(reviewPosterUrlWatch)} 
                         alt="Poster Preview" 
                         className="h-full w-full object-cover"
                         onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
@@ -1172,7 +1159,7 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
                   {imageUrlWatch && (
                     <div className="border border-[#e8e2d8] p-1 bg-white shadow-sm max-w-full relative group overflow-hidden h-20 w-20 flex items-center justify-center">
                       <img 
-                        src={imageUrlWatch} 
+                        src={resolveAssetUrl(imageUrlWatch)} 
                         alt="Footprint Preview" 
                         className="h-full w-full object-cover"
                         onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}

@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { api } from '../services/api';
+import { api, resolveAssetUrl } from '../services/api';
 import { PhotoItem } from '../types';
 import { MapPin, Calendar, Heart, ZoomIn, Sparkles, X, Globe, Play, Pause } from 'lucide-react';
 import { ChinaConstellationMap } from './ChinaConstellationMap';
@@ -223,8 +223,8 @@ export const PictureSection: React.FC = () => {
                           </div>
                         </div>
 
-                        <img 
-                          src={photo.imageUrl} 
+                        <img
+                          src={resolveAssetUrl(photo.imageUrl)}
                           alt={photo.title}
                           referrerPolicy="no-referrer"
                           className="w-full h-full object-cover transition-all duration-1000 grayscale-[25%] group-hover:grayscale-0 group-hover:scale-105"
@@ -449,7 +449,7 @@ export const PictureSection: React.FC = () => {
                   </div>
                 </div>
                 <img
-                  src={selectedFootprint.imageUrl}
+                  src={resolveAssetUrl(selectedFootprint.imageUrl)}
                   alt={selectedFootprint.city}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-all duration-1000 grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105"
@@ -525,7 +525,7 @@ export const PictureSection: React.FC = () => {
               {/* Photo Area (Takes 3/5 width) */}
               <div className="w-full md:w-3/5 relative bg-black flex items-center justify-center h-80 md:h-auto min-h-[400px]">
                 <img
-                  src={selectedPhoto.imageUrl}
+                  src={resolveAssetUrl(selectedPhoto.imageUrl)}
                   alt={selectedPhoto.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover max-h-[85vh]"

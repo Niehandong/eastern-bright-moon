@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { api } from '../services/api';
+import { api, resolveAssetUrl } from '../services/api';
 
 export const AboutSection: React.FC = () => {
   const [bio, setBio] = useState<any>(null);
@@ -77,9 +77,9 @@ export const AboutSection: React.FC = () => {
             <div className="absolute inset-4 border border-brand-gold/20 z-10" />
             <div className="absolute inset-0 border border-brand-gold/10 -translate-x-3 translate-y-3 pointer-events-none" />
             
-            <img 
-              src={bio.coverImage} 
-              alt={bio.name} 
+            <img
+              src={resolveAssetUrl(bio.coverImage)}
+              alt={bio.name}
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover filter brightness-[0.85] saturation-75 shadow-zen"
             />

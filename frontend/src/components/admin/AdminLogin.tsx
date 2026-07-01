@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { API_BASE_URL } from '../../services/api';
+import { request } from '../../services/api';
 
 export const AdminLogin: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -15,19 +15,12 @@ export const AdminLogin: React.FC = () => {
       formData.append('username', values.username);
       formData.append('password', values.password);
 
-      const res = await fetch(`${API_BASE_URL}/auth/login`, {
+      const data: any = await request('/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData,
       });
 
-      if (!res.ok) {
-        const errData = await res.json();
-        throw new Error(errData.detail || '登录失败，请核对凭证');
-      }
-
-      const data = await res.json();
-      
       localStorage.setItem('admin_token', data.access_token);
       message.success('登录成功，欢迎回到东方朗月！');
       navigate('/admin/dashboard');

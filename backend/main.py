@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 import os
 
 from utils.config import settings
+from utils.response import register_unified_response
 from api.auth import router as auth_router
 from api.upload import router as upload_router
 from api.content import router as content_router
@@ -13,6 +14,10 @@ app = FastAPI(
     description="东方朗月 (Eastern Bright Moon) 全栈系统后端接口 API",
     version="1.0.0",
 )
+
+# 注册统一响应信封（成功包装中间件 + 全局异常处理器）。
+# 必须在 CORS 之前调用，从而位于 CORS 内层，保证重建响应后跨域头仍能补上。
+register_unified_response(app, settings.API_V1_STR)
 
 if settings.BACKEND_CORS_ORIGINS:
     if settings.DEBUG:

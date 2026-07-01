@@ -6,6 +6,71 @@ export const API_BASE_URL = import.meta.env.VITE_API_URL || `http://${currentHos
 // 仅包含协议 + 主机 + 端口，用于 upload 返回的相对路径拼接等场景
 export const API_ORIGIN = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '') : `http://${currentHost}:8998`;
 
+// 统一解析图片/资源地址，供所有 <img src> 渲染时使用：
+//  - 空值 -> 返回空串
+//  - 外链或历史遗留的完整地址（http(s)://...）-> 原样返回（兼容旧数据，无需洗库）
+//  - 后端相对路径（/static/uploads/...）-> 按环境补齐来源：
+//      生产 API_ORIGIN='' -> 仍是相对路径，由 nginx 代理 /static
+//      开发 API_ORIGIN='http://host:8998' -> 直连后端
+// 数据库统一只存相对路径，展示层由本函数负责拼接。
+export function resolveAssetUrl(url?: string | null): string {
+  if (!url) return '';
+  if (/^https?:\/\//i.test(url)) return url;
+  return `${API_ORIGIN}${url.startsWith('/') ? '' : '/'}${url}`;
+}
+
+// 后端统一响应信封：{ code, message, data }
+// code === 200 表示成功；否则为业务/逻辑错误，message 即后端给出的报错信息。
+export interface ApiEnvelope<T = any> {
+  code: number;
+  message: string;
+  data: T;
+}
+
+// 统一的 API 异常对象。isNetwork === true 表示请求根本没到达服务器（网络问题）。
+export class ApiError extends Error {
+  code: number;
+  isNetwork: boolean;
+  constructor(message: string, code = -1, isNetwork = false) {
+    super(message);
+    this.name = 'ApiError';
+    this.code = code;
+    this.isNetwork = isNetwork;
+  }
+}
+
+// 统一请求入口：path 相对于 API_BASE_URL。
+//  - 网络异常（fetch 直接 reject）-> 抛 ApiError(isNetwork=true)，提示网络问题
+//  - 业务错误（响应体 code !== 200）-> 抛 ApiError(message=后端 message)
+//  - 成功 -> 返回信封中的 data
+// 调用方只需 try/catch 一处，按 err.message 提示即可。
+export async function request<T = any>(path: string, options?: RequestInit): Promise<T> {
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE_URL}${path}`, options);
+  } catch {
+    throw new ApiError('网络异常，请检查网络连接后重试', -1, true);
+  }
+
+  let body: any = null;
+  try {
+    body = await res.json();
+  } catch {
+    // 后端理论上始终返回 JSON 信封；解析失败按服务异常处理
+    throw new ApiError(`服务响应异常（HTTP ${res.status}）`, -1, false);
+  }
+
+  // 标准信封：以 code 判定成败
+  if (body && typeof body === 'object' && 'code' in body) {
+    if (body.code === 200) return body.data as T;
+    throw new ApiError(body.message || '请求失败', typeof body.code === 'number' ? body.code : -1, false);
+  }
+
+  // 兜底：非信封结构（全量信封化后理论上不会走到这里）
+  if (!res.ok) throw new ApiError(`请求失败（HTTP ${res.status}）`, -1, false);
+  return body as T;
+}
+
 let bioCache: any = null;
 
 export const api = {
@@ -15,57 +80,39 @@ export const api = {
 
   async getBio() {
     if (bioCache) return bioCache;
-    const res = await fetch(`${API_BASE_URL}/bio`);
-    if (!res.ok) throw new Error('获取个人信息失败');
-    bioCache = await res.json();
+    bioCache = await request('/bio');
     return bioCache;
   },
 
-  async getIssues(): Promise<ColumnIssue[]> {
-    const res = await fetch(`${API_BASE_URL}/issues`);
-    if (!res.ok) throw new Error('获取期刊列表失败');
-    return res.json();
+  getIssues(): Promise<ColumnIssue[]> {
+    return request('/issues');
   },
 
-  async getIssueById(id: string): Promise<ColumnIssue> {
-    const res = await fetch(`${API_BASE_URL}/issues/${id}`);
-    if (!res.ok) throw new Error('获取期刊详情失败');
-    return res.json();
+  getIssueById(id: string): Promise<ColumnIssue> {
+    return request(`/issues/${id}`);
   },
 
-  async getExhibitions(): Promise<ExhibitionReview[]> {
-    const res = await fetch(`${API_BASE_URL}/exhibitions`);
-    if (!res.ok) throw new Error('获取展览列表失败');
-    return res.json();
+  getExhibitions(): Promise<ExhibitionReview[]> {
+    return request('/exhibitions');
   },
 
-  async getPhotos(): Promise<PhotoItem[]> {
-    const res = await fetch(`${API_BASE_URL}/photos`);
-    if (!res.ok) throw new Error('获取摄影列表失败');
-    return res.json();
+  getPhotos(): Promise<PhotoItem[]> {
+    return request('/photos');
   },
 
-  async getFootprints(): Promise<FootprintItem[]> {
-    const res = await fetch(`${API_BASE_URL}/footprints`);
-    if (!res.ok) throw new Error('获取足迹数据失败');
-    return res.json();
+  getFootprints(): Promise<FootprintItem[]> {
+    return request('/footprints');
   },
 
-  async getCandles(): Promise<CandleProduct[]> {
-    const res = await fetch(`${API_BASE_URL}/candles`);
-    if (!res.ok) throw new Error('获取香薰列表失败');
-    return res.json();
+  getCandles(): Promise<CandleProduct[]> {
+    return request('/candles');
   },
 
-  async getQuotes(): Promise<ZenQuote[]> {
-    const res = await fetch(`${API_BASE_URL}/quotes`);
-    if (!res.ok) throw new Error('获取名言列表失败');
-    return res.json();
+  getQuotes(): Promise<ZenQuote[]> {
+    return request('/quotes');
   },
 
-  async getMoonPhases(): Promise<any[]> {
-    const res = await fetch(`${API_BASE_URL}/moon-phases`);
-    if (!res.ok) throw new Error('获取月相列表失败');
-    return res.json();
+  getMoonPhases(): Promise<any[]> {
+    return request('/moon-phases');
   },
 };
