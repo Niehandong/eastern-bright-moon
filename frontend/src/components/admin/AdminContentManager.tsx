@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Popconfirm, Form, Input, Upload, message, Space, DatePicker, Select } from 'antd';
-import { PlusOutlined, UploadOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined, UploadOutlined, EditOutlined, DeleteOutlined, ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { api, API_ORIGIN, request, resolveAssetUrl } from '../../services/api';
 import { ChinaConstellationMap } from '../ChinaConstellationMap';
@@ -314,6 +314,29 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
     }
   };
 
+  // 月相上移/下移：在当前顺序中与相邻行交换，按新顺序整体重置 sort_order 并刷新
+  const moveMoon = async (index: number, dir: -1 | 1) => {
+    const target = index + dir;
+    if (target < 0 || target >= data.length) return;
+    const reordered = [...data];
+    [reordered[index], reordered[target]] = [reordered[target], reordered[index]];
+    const token = localStorage.getItem('admin_token');
+    try {
+      await request('/admin/moon-phases/reorder', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ ordered_ids: reordered.map((m: any) => m.id) })
+      });
+      messageApi.success('月相排序已更新');
+      loadData();
+    } catch (err: any) {
+      messageApi.error(err.message || '排序更新失败');
+    }
+  };
+
   const columns = activeKey === 'bio' ? [
     { title: '姓名', dataIndex: 'name', key: 'name', align: 'center' },
     { title: '外文名', dataIndex: 'name_en', key: 'name_en', align: 'center' },
@@ -364,11 +387,25 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
     { title: '核心词', dataIndex: 'keywords', key: 'keywords', align: 'center' },
     { title: '适宜行动', dataIndex: 'suitable', key: 'suitable', align: 'center' },
     {
-      title: '操作', key: 'action', align: 'center', render: (_: any, record: any) => (
+      title: '操作', key: 'action', align: 'center', render: (_: any, record: any, index: number) => (
         <Space size="small">
-          <Button 
-            type="link" 
-            icon={<EditOutlined />} 
+          <Button
+            type="link"
+            icon={<ArrowUpOutlined />}
+            disabled={index === 0}
+            title="上移"
+            onClick={() => moveMoon(index, -1)}
+          />
+          <Button
+            type="link"
+            icon={<ArrowDownOutlined />}
+            disabled={index === data.length - 1}
+            title="下移"
+            onClick={() => moveMoon(index, 1)}
+          />
+          <Button
+            type="link"
+            icon={<EditOutlined />}
             onClick={() => {
               setEditingItem(record);
               form.setFieldsValue({

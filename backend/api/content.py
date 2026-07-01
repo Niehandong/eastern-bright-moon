@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
+from sqlalchemy import update
 from typing import List
 import datetime
 import uuid
@@ -343,3 +344,16 @@ async def create_moon_phase(
     await db.commit()
     await db.refresh(db_mp)
     return db_mp
+
+@router.put("/admin/moon-phases/reorder")
+async def reorder_moon_phases(
+    payload: dict,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    # 按传入的 id 顺序，将各月相的 sort_order 重置为其下标（0,1,2…），自愈重复/断档
+    ordered_ids = payload.get("ordered_ids") or []
+    for index, mid in enumerate(ordered_ids):
+        await db.execute(update(MoonPhase).where(MoonPhase.id == mid).values(sort_order=index))
+    await db.commit()
+    return {"status": "ok", "count": len(ordered_ids)}
