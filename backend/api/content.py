@@ -79,7 +79,7 @@ async def update_bio(
 # --- 2. COLUMN ISSUES ---
 @router.get("/issues", response_model=List[IssueRead])
 async def get_issues(db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(ColumnIssue).options(selectinload(ColumnIssue.articles)))
+    result = await db.execute(select(ColumnIssue).options(selectinload(ColumnIssue.articles)).order_by(ColumnIssue.date.asc()))
     return result.scalars().all()
 
 @router.get("/issues/{id}", response_model=IssueRead)
@@ -185,7 +185,7 @@ async def create_article(
 # --- 4. EXHIBITION REVIEWS ---
 @router.get("/exhibitions", response_model=List[ExhibitionRead])
 async def get_exhibitions(db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(ExhibitionReview))
+    result = await db.execute(select(ExhibitionReview).order_by(ExhibitionReview.date.desc()))
     return result.scalars().all()
 
 @router.post("/admin/exhibitions", response_model=ExhibitionRead)
