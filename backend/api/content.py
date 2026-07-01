@@ -141,7 +141,8 @@ async def create_issue(
             issue_id=db_issue.id,
             title=art.get("title", "未命名目录"),
             subtitle=art.get("subtitle", ""),
-            date=_to_date(art.get("date")) or db_issue.date,
+            # column_articles.date 是 String 列，存字符串；回退用期刊(Date 列)的 ISO 字符串
+            date=art.get("date") or (db_issue.date.isoformat() if db_issue.date else None),
             content=art.get("content", ""),
             sort_order=int(art.get("sort_order") or idx)
         )

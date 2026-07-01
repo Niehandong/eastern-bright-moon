@@ -21,7 +21,7 @@ class ArticleBase(BaseModel):
     id: str
     title: str
     subtitle: Optional[str] = None
-    date: Optional[datetime.date] = None
+    date: Optional[str] = None  # 对应 column_articles.date 为 String 列，保持字符串
     content: str
     sort_order: int = 0
 
