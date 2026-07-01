@@ -221,7 +221,10 @@ async def create_photo(
 # --- 6. FOOTPRINTS ---
 @router.get("/footprints", response_model=List[FootprintRead])
 async def get_footprints(db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(FootprintItem))
+    # 按足迹日期倒序（最近的在前），空日期排最后
+    result = await db.execute(
+        select(FootprintItem).order_by(FootprintItem.date.desc().nullslast())
+    )
     return result.scalars().all()
 
 @router.post("/admin/footprints", response_model=FootprintRead)

@@ -269,7 +269,7 @@ export const PictureSection: React.FC = () => {
                         <div className="text-[11px] text-[#8c8273] font-mono mb-1">{fp.date}</div>
                         <div className="flex items-center text-xs text-[#8c8273] mb-1.5">
                           <MapPin className="w-3 h-3 mr-1 text-brand-gold" />
-                          {fp.location || fp.city}
+                          {fp.city}{fp.location ? ` · ${fp.location}` : ''}
                         </div>
                         <p className="text-xs text-[#5b5348] leading-relaxed line-clamp-2">{fp.description}</p>
                       </div>
