@@ -7,8 +7,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { api, resolveAssetUrl } from '../services/api';
 import { PhotoItem } from '../types';
-import { MapPin, Calendar, Heart, ZoomIn, Sparkles, X, Globe, Play, Pause } from 'lucide-react';
-import { ChinaConstellationMap } from './ChinaConstellationMap';
+import { MapPin, Calendar, Heart, ZoomIn, Sparkles, X, Globe } from 'lucide-react';
+import { FootprintMap } from './FootprintMap';
 import { Modal } from 'antd';
 
 interface FootprintItem {
@@ -21,8 +21,8 @@ interface FootprintItem {
   imageUrl: string;
   description: string;
   region: string;
-  x: number; // 经度 -> 复位为平面百分比 X
-  y: number; // 纬度 -> 复位为平面百分比 Y
+  lat: number | null;
+  lng: number | null;
 }
 
 export const PictureSection: React.FC = () => {
@@ -37,8 +37,6 @@ export const PictureSection: React.FC = () => {
 
   // Trace map states
   const [selectedFootprint, setSelectedFootprint] = useState<FootprintItem | null>(null);
-  const [mapRegionFilter, setMapRegionFilter] = useState<string>('全部');
-  const [isPlayingTour, setIsPlayingTour] = useState<boolean>(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
   useEffect(() => {
@@ -64,8 +62,8 @@ export const PictureSection: React.FC = () => {
           imageUrl: fp.image_url,
           description: fp.description,
           region: fp.region,
-          x: fp.x, // 将数据库里的 x 复位为平面百分比 X
-          y: fp.y  // 将数据库里的 y 复位为平面百分比 Y
+          lat: fp.lat ?? null,
+          lng: fp.lng ?? null
         }));
 
         setPhotoItems(mappedPhotos);
@@ -94,31 +92,6 @@ export const PictureSection: React.FC = () => {
     }));
   };
 
-  // Autoplay slideshow tour
-  useEffect(() => {
-    let intervalId: any = null;
-    if (isPlayingTour && selectedFootprint) {
-      intervalId = setInterval(() => {
-        setSelectedFootprint((current) => {
-          if (!current) return null;
-          const filteredItems = mapRegionFilter === '全部'
-            ? footprintItems
-            : footprintItems.filter(f => f.region === mapRegionFilter || f.country === mapRegionFilter);
-          
-          if (!filteredItems.length) return current;
-          
-          const currentIndex = filteredItems.findIndex(f => f.id === current.id);
-          const nextIndex = currentIndex === -1 || currentIndex === filteredItems.length - 1 ? 0 : currentIndex + 1;
-          const nextFp = filteredItems[nextIndex];
-          setIsDetailModalOpen(true);
-          return nextFp;
-        });
-      }, 5000);
-    }
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [isPlayingTour, mapRegionFilter, selectedFootprint, footprintItems]);
 
   if (loading) {
     return (
@@ -159,10 +132,7 @@ export const PictureSection: React.FC = () => {
               镜头画廊 GALLERY
             </button>
             <button
-              onClick={() => {
-                setActiveMode('map');
-                setIsPlayingTour(false);
-              }}
+              onClick={() => setActiveMode('map')}
               className={`px-6 py-2 text-xs tracking-[0.25em] transition-all cursor-pointer font-medium flex items-center gap-2 ${
                 activeMode === 'map'
                   ? 'bg-brand-dark text-white font-semibold'
@@ -279,110 +249,44 @@ export const PictureSection: React.FC = () => {
             </motion.div>
           </>
         ) : (
-          <div className="flex flex-col gap-8">
-            
-            {/* Map Filter Sub-tabs */}
-            <div className="flex flex-wrap items-center gap-2 justify-center mb-4">
-              {['全部', '日本', '大湾区', '华东', '华北', '华中', '西北'].map((region) => {
-                const count = region === '全部'
-                  ? footprintItems.length
-                  : footprintItems.filter(f => f.region === region || f.country === region).length;
-                return (
-                  <button
-                    key={region}
-                    onClick={() => {
-                      setMapRegionFilter(region);
-                      const matched = region === '全部'
-                        ? footprintItems
-                        : footprintItems.filter(f => f.region === region || f.country === region);
-                      if (matched.length > 0) {
-                        setSelectedFootprint(matched[0]);
-                      }
-                    }}
-                    className={`px-4 py-1.5 text-xs text-center font-serif tracking-widest border transition-all duration-300 rounded-none cursor-pointer ${
-                      mapRegionFilter === region
-                        ? 'bg-brand-dark text-white border-brand-dark font-medium'
-                        : 'bg-white text-[#8c8273] border-[#e8e2d8] hover:border-[#8c8273] hover:text-brand-dark'
-                    }`}
-                  >
-                    {region} ({count})
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Centered map panel with visual elements */}
-            <div className="w-full max-w-4xl mx-auto bg-[#fcfbf9]/60 border border-[#e8e2d8] p-5 flex flex-col relative shadow-[0_6px_30px_rgba(40,35,30,0.03)] rounded-none">
-              
-              {/* Visual accessories inside container */}
-              <div className="flex justify-between items-center mb-5 pb-3 border-b border-[#e8e2d8] text-[#8c8273]">
-                <div className="flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-brand-dark/60" />
-                  <span className="font-mono text-[10px] tracking-[0.25em] uppercase font-semibold text-brand-dark/80">
-                    平面古舆图与星图 NAVIGATION CHART
-                  </span>
-                </div>
-                
-                {/* Slideshow controller button */}
-                <button
-                  onClick={() => setIsPlayingTour(!isPlayingTour)}
-                  className={`flex items-center gap-1.5 px-3 py-1 text-[10px] font-mono tracking-widest border transition-all cursor-pointer ${
-                    isPlayingTour
-                      ? 'bg-[#8c8273]/10 text-brand-dark border-[#8c8273] font-medium'
-                      : 'bg-white hover:bg-[#faf8f5] text-[#8c8273] border-[#e8e2d8]'
-                  }`}
-                >
-                  {isPlayingTour ? <Pause className="w-2.5 h-2.5 text-[#8c8273] animate-pulse" /> : <Play className="w-2.5 h-2.5" />}
-                  {isPlayingTour ? '自动慢游中 OFF' : '自动慢游 ON'}
-                </button>
-              </div>
-
-              {/* Map responsive container */}
-              <div className="w-full">
-                <ChinaConstellationMap>
-                  {footprintItems
-                    .filter((fp) => mapRegionFilter === '全部' || fp.region === mapRegionFilter || fp.country === mapRegionFilter)
-                    .map((fp) => {
-                      const isSelected = selectedFootprint?.id === fp.id;
-                      
-                      return (
-                        <div
-                          key={fp.id}
-                          style={{
-                            position: 'absolute',
-                            left: `${fp.x}%`,
-                            top: `${fp.y}%`,
-                            transform: 'translate(-50%, -50%)',
-                            zIndex: isSelected ? 30 : 20,
-                          }}
-                          className="group/marker"
-                        >
-                          {/* Clickable button anchor point */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedFootprint(fp);
-                              setIsDetailModalOpen(true);
-                            }}
-                            className="relative flex items-center justify-center w-6 h-6 focus:outline-none cursor-pointer"
-                          >
-                            {/* Pulsing ripple wave */}
-                            <span className={`absolute inline-flex w-5 h-5 rounded-full bg-brand-gold/40 opacity-75 ${isSelected ? 'animate-ping scale-150' : 'group-hover/marker:animate-ping'}`} />
-                            
-                            {/* Inner glowing gold core */}
-                            <span className={`relative inline-flex rounded-full w-2.5 h-2.5 shadow-[0_0_8px_#C5A880] transition-transform duration-300 ${isSelected ? 'bg-white scale-125' : 'bg-brand-gold'}`} />
-                          </button>
-
-                          {/* Micro-label for city name */}
-                          <div className={`absolute left-1/2 -bottom-6 -translate-x-1/2 px-2 py-0.5 bg-brand-dark/90 text-brand-cream border text-[10px] font-sans rounded-sm shadow-md pointer-events-none transition-all duration-300 ${isSelected ? 'opacity-100 scale-100 border-brand-gold/60' : 'opacity-0 scale-90 group-hover/marker:opacity-100 group-hover/marker:scale-100 border-brand-gold/20'}`}>
-                            <span className="whitespace-nowrap">{fp.city}</span>
-                          </div>
+          <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-4 h-[560px] border border-[#e8e2d8] bg-[#fffdf6] shadow-[0_6px_30px_rgba(40,35,30,0.04)]">
+            {/* 左侧时间线：日期 / 地点 / 描述 */}
+            <div className="w-full md:w-[320px] shrink-0 border-b md:border-b-0 md:border-r border-[#e8e2d8] bg-brand-cream/60 overflow-y-auto p-6 font-serif">
+              <h3 className="text-lg tracking-[0.2em] text-brand-ink mb-1">寰宇足迹</h3>
+              <p className="text-[10px] text-[#8c8273] tracking-widest mb-6 uppercase">TRACE MAP · TIMELINE</p>
+              <div className="space-y-6">
+                {[...footprintItems]
+                  .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+                  .map((fp) => {
+                    const isSel = selectedFootprint?.id === fp.id;
+                    return (
+                      <div
+                        key={fp.id}
+                        onClick={() => { setSelectedFootprint(fp); setIsDetailModalOpen(true); }}
+                        className={`border-l-[1.5px] pl-4 py-1 relative cursor-pointer group transition-colors ${isSel ? 'border-brand-gold' : 'border-[#e8e2d8] hover:border-[#EADCD3]'}`}
+                      >
+                        <span className={`absolute -left-[4px] top-2 w-1.5 h-1.5 rounded-full transition-colors ${isSel ? 'bg-brand-gold' : 'bg-[#EADCD3] group-hover:bg-brand-gold'}`} />
+                        <div className="text-[11px] text-[#8c8273] font-mono mb-1">{fp.date}</div>
+                        <div className="flex items-center text-xs text-[#8c8273] mb-1.5">
+                          <MapPin className="w-3 h-3 mr-1 text-brand-gold" />
+                          {fp.location || fp.city}
                         </div>
-                      );
-                    })}
-                </ChinaConstellationMap>
+                        <p className="text-xs text-[#5b5348] leading-relaxed line-clamp-2">{fp.description}</p>
+                      </div>
+                    );
+                  })}
+                {footprintItems.length === 0 && (
+                  <div className="text-[#8c8273] text-xs py-10 text-center border border-dashed border-[#e8e2d8]">暂无足迹记录</div>
+                )}
               </div>
-
+            </div>
+            {/* 右侧真实地图 */}
+            <div className="flex-1 relative min-h-[300px]">
+              <FootprintMap
+                footprints={footprintItems}
+                selected={selectedFootprint}
+                onSelect={(fp) => { setSelectedFootprint(fp); setIsDetailModalOpen(true); }}
+              />
             </div>
           </div>
         )}

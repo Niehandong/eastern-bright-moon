@@ -101,8 +101,8 @@ class FootprintBase(BaseModel):
     city_en: Optional[str] = None
     country: str
     location: Optional[str] = None
-    x: float
-    y: float
+    lat: Optional[float] = None
+    lng: Optional[float] = None
     date: Optional[datetime.date] = None
     image_url: Optional[str] = None
     description: Optional[str] = None

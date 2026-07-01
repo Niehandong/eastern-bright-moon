@@ -56,8 +56,8 @@ export interface FootprintItem {
   cityEn: string;      // e.g. "Beijing", "Kyoto"
   country: string;     // e.g. "中国", "日本"
   location: string;    // Specific landmark/photo location
-  x: number;           // Relative X percentage coordinates on the custom map (0-100)
-  y: number;           // Relative Y percentage coordinates on the custom map (0-100)
+  lat: number | null;  // 纬度
+  lng: number | null;  // 经度
   date: string;        // e.g. "2024.11"
   imageUrl: string;    // Photos represent "东方朗月"'s camera roll for that city
   description: string; // Poetic travel contemplation

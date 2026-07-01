@@ -3,7 +3,6 @@ import { Table, Button, Modal, Popconfirm, Form, Input, Upload, message, Space, 
 import { PlusOutlined, UploadOutlined, EditOutlined, DeleteOutlined, ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { api, API_ORIGIN, request, resolveAssetUrl } from '../../services/api';
-import { ChinaConstellationMap } from '../ChinaConstellationMap';
 
 interface AdminContentManagerProps {
   activeKey: 'bio' | 'moons' | 'issues' | 'reviews' | 'photos' | 'footprints';
@@ -76,8 +75,6 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const coverImageWatch = Form.useWatch('coverImage', form);
-  const xWatch = Form.useWatch('x', form);
-  const yWatch = Form.useWatch('y', form);
   const imageUrlWatch = Form.useWatch('image_url', form);
   const photoImageUrlWatch = Form.useWatch('imageUrl', form);
   const issueMainImageWatch = Form.useWatch('main_image', form);
@@ -271,8 +268,8 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
             city_en: values.city_en,
             country: values.country,
             location: values.location,
-            x: Number(values.x || 0),
-            y: Number(values.y || 0),
+            lat: values.lat !== undefined && values.lat !== '' ? Number(values.lat) : null,
+            lng: values.lng !== undefined && values.lng !== '' ? Number(values.lng) : null,
             date: values.date ? values.date.format('YYYY-MM-DD') : null,
             image_url: values.image_url,
             description: values.description,
@@ -563,8 +560,8 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
                 city_en: record.city_en,
                 country: record.country,
                 location: record.location,
-                x: record.x,
-                y: record.y,
+                lat: record.lat,
+                lng: record.lng,
                 date: record.date ? dayjs(record.date) : null,
                 image_url: record.image_url,
                 description: record.description,
@@ -1135,36 +1132,14 @@ export const AdminContentManager: React.FC<AdminContentManagerProps> = ({ active
               <Form.Item label="定点地标 / Location" name="location">
                 <Input placeholder="例如: 岚山" />
               </Form.Item>
-              {/* Hidden X and Y Coordinate Fields */}
-              <Form.Item name="x" noStyle><Input type="hidden" /></Form.Item>
-              <Form.Item name="y" noStyle><Input type="hidden" /></Form.Item>
-
-              {/* Interactive Map Coordinate Picker */}
-              <div className="border border-[#e8e2d8] p-4 bg-[#fffdfa] mb-6 font-serif">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-xs font-serif font-semibold tracking-widest text-[#2c2722]">
-                    选择足迹地图坐标位置 / CLICK ON MAP TO SET COORDS
-                  </span>
-                  {xWatch !== undefined && yWatch !== undefined && (
-                    <span className="text-[10px] font-mono text-brand-gold font-medium bg-[#2c2722] px-2 py-0.5 uppercase tracking-wider">
-                      COORDS: (X: {xWatch}%, Y: {yWatch}%)
-                    </span>
-                  )}
-                </div>
-                
-                <ChinaConstellationMap onMapClick={(pctX, pctY) => form.setFieldsValue({ x: pctX, y: pctY })}>
-                  {xWatch !== undefined && yWatch !== undefined && (
-                    <div 
-                      style={{ left: `${xWatch}%`, top: `${yWatch}%` }}
-                      className="absolute w-4 h-4 -ml-2 -mt-2 z-30 flex items-center justify-center pointer-events-none"
-                    >
-                      {/* Active radar ripple */}
-                      <span className="absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75 animate-ping" />
-                      {/* Solid center marker */}
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#2c2722] border border-brand-gold" />
-                    </div>
-                  )}
-                </ChinaConstellationMap>
+              {/* 经纬度手动输入 */}
+              <div className="grid grid-cols-2 gap-4">
+                <Form.Item label="纬度 / Latitude" name="lat" rules={[{ required: true, message: '请输入纬度' }]}>
+                  <Input type="number" step="any" placeholder="如 39.90" className="h-10 rounded-none" />
+                </Form.Item>
+                <Form.Item label="经度 / Longitude" name="lng" rules={[{ required: true, message: '请输入经度' }]}>
+                  <Input type="number" step="any" placeholder="如 116.41" className="h-10 rounded-none" />
+                </Form.Item>
               </div>
 
               <Form.Item label="足迹区域 / Region" name="region" rules={[{ required: true, message: '请填写足迹区域' }]}>
